@@ -1,0 +1,24 @@
+::ng-deep select {
+  width: 10em;
+  &.ng-invalid {
+    border: 2px solid red;
+  }
+}
+
+.app-loading {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    top: calc(50% - 0.5em);
+    left: 0;
+    right: 0;
+    line-height: 1em;
+    text-align: center;
+    content: 'loading';
+  }
+
+  ::ng-deep > * {
+    opacity: 0.3;
+  }
+}

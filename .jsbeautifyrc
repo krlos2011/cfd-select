@@ -1,0 +1,12 @@
+{
+  "indent_char": " ",
+  "indent_size": 2,
+  "end_with_newline": true,
+  "html": {
+    "wrap_attributes": "force-expand-multiline"
+  },
+  "css": {
+    "selector_separator": " ",
+    "selector_separator_newline": true
+  }
+}

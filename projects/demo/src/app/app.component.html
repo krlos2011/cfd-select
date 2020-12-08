@@ -1,0 +1,124 @@
+<h1>cfd-select Demo</h1>
+
+<form [formGroup]="options">
+  <fieldset>
+    <legend>Options</legend>
+    <div>1
+      <input
+        id="disabled"
+        type="checkbox"
+        formControlName="disabled"
+      />
+      <label for="disabled">Disabled</label>
+      <input
+        id="required"
+        type="checkbox"
+        formControlName="required"
+      />
+      <label for="required">Required</label>
+      <input
+        id="multiple"
+        type="checkbox"
+        formControlName="multiple"
+      />
+      <label for="multiple">Multiple</label>
+    </div>
+    <div>
+      <label>Selected</label>
+      <cfd-select
+        id="options"
+        formControlName="selecteds"
+        [multiple]="options.value.multiple"
+      >
+        <option
+          *ngFor="let car of CARS"
+          [value]="car"
+        >{{car}}</option>
+      </cfd-select>
+      <button
+        type="button"
+        (click)="reloadOptions(false)"
+      >Reload Options</button>
+      <button
+        type="button"
+        (click)="reloadOptions(true)"
+      >Clean and Reload Options</button>
+    </div>
+  </fieldset>
+</form>
+
+<form
+  [formGroup]="reacSyncForm"
+  (ngSubmit)="submit(reacSyncForm.value)"
+>
+  <fieldset>
+    <legend>Reactive Form (Sync Options)</legend>
+    <div>
+      <cfd-select
+        id="sync"
+        formControlName="cars"
+        [multiple]="options.value.multiple"
+      >
+        <option
+          cfdSelectOption
+          *ngFor="let car of CARS"
+          [value]="car"
+          [selected]="selectedCars?.includes(car)"
+        >{{car}}</option>
+      </cfd-select>
+    </div>
+    <input type="submit">
+    <pre>{{ JSON.stringify(reacSyncForm.value, null, 4) }}</pre>
+  </fieldset>
+</form>
+
+<form
+  [formGroup]="reacAsyncForm"
+  (ngSubmit)="submit(reacAsyncForm.value)"
+>
+  <fieldset>
+    <legend>Reactive Form (Async Options)</legend>
+    <div>
+      <cfd-select
+        id="reactive"
+        formControlName="cars"
+        [multiple]="options.value.multiple"
+        [appLoading]="loadingOptions"
+      >
+        <option
+          cfdSelectOption
+          *ngFor="let car of (cars$ | async)"
+          [value]="car"
+          [selected]="selectedCars?.includes(car)"
+        >{{car}}</option>
+      </cfd-select>
+    </div>
+    <input type="submit">
+    <pre>{{ JSON.stringify(reacAsyncForm.value, null, 4) }}</pre>
+  </fieldset>
+</form>
+
+<form (ngSubmit)="submit(templateModel)">
+  <fieldset>
+    <legend>Template Driver Form (Async Options)</legend>
+    <div>
+      <cfd-select
+        id="template"
+        [(ngModel)]="templateModel.cars"
+        name="cars"
+        [disabled]="options.value.disabled"
+        [required]="options.value.required"
+        [multiple]="options.value.multiple"
+      >
+        <option
+          cfdSelectOption
+          *ngFor="let car of (cars$ | async)"
+          [value]="car"
+          [selected]="selectedCars?.includes(car)"
+        >{{car}}</option>
+      </cfd-select>
+    </div>
+    <input type="submit">
+    <pre>{{ JSON.stringify(templateModel, null, 4) }}</pre>
+  </fieldset>
+</form>

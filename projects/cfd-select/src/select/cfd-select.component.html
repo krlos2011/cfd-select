@@ -1,0 +1,26 @@
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>
+<ng-container *ngIf="multiple; else single">
+  <select
+    #selectMultiple
+    [(ngModel)]="value"
+    [disabled]="disabled"
+    [required]="required"
+    multiple
+    [attr.aria-label]="true"
+  >
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </select>
+</ng-container>
+<ng-template #single>
+  <select
+    #selectSingle
+    [(ngModel)]="value"
+    [disabled]="disabled"
+    [required]="required"
+    [attr.aria-label]="true"
+  >
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </select>
+</ng-template>
