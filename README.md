@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.3.
 
-# cfd-select component
+# [cfd-select component](./projects/cfd-select/src/select/cfd-select.component.ts)
 
 ## Overview
 
@@ -57,11 +57,11 @@ Selector: `option[cfdSelectOption]`
 
 # Project structure
 
-## projects/cfd-select
+## [projects/cfd-select](./projects/cfd-select)
 
 A library with the **cfd-select component**
 
-## projects/demo
+## [projects/demo](./projects/demo)
 
 Demo application
 
